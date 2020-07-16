@@ -181,22 +181,23 @@ let [, second, , fourth] = [1, 2, 3, 4];
 */
 
 // 4.2 对象解构
+
 /* let o = {
     a: "foo",
     b: 12,
     c: "bar"
 };
-let { a, b } = o;
-console.log(a); */
-
-// 4.2.1 就像数组解构，你可以用没有声明的赋值
-/* let { a, b } = { 
+let {a, b} = o;
+// 这通过 o.a and o.b 创建了 a 和 b 。 
+console.log(a);
+// 注意，如果你不需要 c 你可以忽略它。
+({ a, b } = { 
     a: "baz",
     b: 101 
-};
+});
 console.log(a); */
 
-// 4.2.2 在对象里使用...语法创建剩余变量
+// 4.2.1 在对象里使用...语法创建剩余变量
 /* let { a, ...passthrough } = {
     a: 1,
     b: 2,
@@ -206,14 +207,14 @@ console.log(a); */
 let total = passthrough.b + passthrough.c.length;
 console.log(total); */
 
-// 4.2.3 属性重命名
+// 4.2.2 属性重命名
 /* let { a: newName1, b: newName2 } = {
     a: 1,
     b: 2
 };
 console.log(newName1); */
 
-// 4.2.4 默认值
+// 4.2.3 默认值
 // 默认值可以让你在属性为 undefined 时使用缺省值：
 /* let keepWholeObject = (wholeObject: {a: string, b?: number}) => {
     let {a, b = 1001} = wholeObject;
@@ -223,20 +224,20 @@ console.log(newName1); */
 keepWholeObject({a:'df', b: undefined}); */
 // 现在，即使 b 为 undefined ， keepWholeObject 函数的变量 wholeObject 的属性 a 和 b 都会有值。
 
-// 4.2.5 函数声明
+// 4.2.4 函数声明
 /* type C = {a: string, b: number};
 function f({a, b}: C): void {
     //...
 } */
 
-// 4.2.5.1 更多的是指定默认值,首先，你需要在默认值之前设置其格式。
+// 4.2.4.1 更多的是指定默认值,首先，你需要在默认值之前设置其格式。
 /* let f = ({a="", b=0} = {}): void => {
     //...
 }
 f(); */
 // 上面的代码是一个类型推断的例子, 类型推论中会有详细讲解.
 
-// 4.2.5.2 道在解构属性上给予一个默认或可选的属性用来替换主初始化列表。 要知道 C 的定义有一个 b 可选属性：
+// 4.2.4.2 在解构属性上给予一个默认或可选的属性用来替换主初始化列表。 要知道 C 的定义有一个 b 可选属性：
 /* let f = ({a, b = 0} = {a: ""}):void => {
     console.log(a);
     console.log(b);
